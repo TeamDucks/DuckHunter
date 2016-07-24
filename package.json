@@ -1,0 +1,34 @@
+{
+  "name": "duck-hunter-game",
+  "version": "0.0.1",
+  "description": "The project is self descriptive :|",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack --watch",
+    "server": "./node_modules/.bin/http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game",
+    "phaser",
+    "typerscript"
+  ],
+  "author": "https://github.com/TeamDucks",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TeamDucks/DuckHunter.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "p2": "^0.7.1",
+    "phaser": "^2.6.1",
+    "pixi.js": "^3.0.11"
+  }
+}

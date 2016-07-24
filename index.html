@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Duck Hunter</title>
+    </head>
+    <body>
+        <!-- I gave up with including Pixi in both TypeScript and Webpack pipeline -->
+        <!-- TODO: move this to a 'lib' folder -->
+        <!-- Note that Phaser using a customized version of Pixi, so we can't use the one publish on NPM by the way -->
+        <script src="./node_modules/phaser/dist/pixi.min.js"></script>
+
+        <!-- Same reason and todo as above, Phaser runtime dependency is fucking annoying -->
+        <script src="./node_modules/phaser/dist/p2.min.js"></script>
+
+        <!-- Main -->
+        <script src="./dist/bundle.js"></script>
+    </body>
+</html>
