@@ -7,6 +7,7 @@ import Phaser = require('phaser');
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var player: Phaser.Sprite;
 var platforms: Phaser.Group;
+var cursors: Phaser.CursorKeys;
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -50,8 +51,27 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     createEnvironment();
     createPlayer();
+    cursors = game.input.keyboard.createCursorKeys();
 }
+
 
 function update() {
     game.physics.arcade.collide(player, platforms);
+
+    player.body.velocity.x = 0;
+
+    if (cursors.left.isDown) {
+        player.body.velocity.x = -150;
+        player.animations.play('left');
+    } else if (cursors.right.isDown) {
+        player.body.velocity.x = 150;
+        player.animations.play('right');
+    } else {
+        player.animations.stop();
+        player.frame = 4;
+    }
+
+    if (cursors.up.isDown && player.body.touching.down) {
+        player.body.velocity.y = -350;
+    }
 }
