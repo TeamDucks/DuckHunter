@@ -5,6 +5,8 @@
 import Phaser = require('phaser');
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var player: Phaser.Sprite;
+var platforms: Phaser.Group;
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -16,7 +18,7 @@ function preload() {
 function createEnvironment() {
     game.add.sprite(0, 0, 'sky');
 
-    var platforms = game.add.group();
+    platforms = game.add.group();
     platforms.enableBody = true;
 
     var ground = platforms.create(0, game.world.height - 64, 'ground');
@@ -31,15 +33,17 @@ function createEnvironment() {
 }
 
 function createPlayer() {
-    var player = game.add.sprite(32, game.world.height - 150, 'dude');
+    player = game.add.sprite(32, game.world.height - 150, 'dude');
     game.physics.arcade.enable(player);
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
+    player.frame = 4;
 
     //  Our two animations, walking left and right.
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
+
 }
 
 function create() {
@@ -49,4 +53,5 @@ function create() {
 }
 
 function update() {
+    game.physics.arcade.collide(player, platforms);
 }
