@@ -8,6 +8,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 var player: Phaser.Sprite;
 var platforms: Phaser.Group;
 var cursors: Phaser.CursorKeys;
+var stars: Phaser.Group;
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -33,6 +34,18 @@ function createEnvironment() {
     ledge2.body.immovable = true;
 }
 
+function createDrops() {
+    stars = game.add.group();
+    stars.enableBody = true;
+
+    for (var i = 0; i < 12; i++) {
+        console.log('add a star');
+        var star = stars.create(i * 70, 0, 'star');
+        star.body.gravity.y = 6;
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+}
+
 function createPlayer() {
     player = game.add.sprite(32, game.world.height - 150, 'dude');
     game.physics.arcade.enable(player);
@@ -44,14 +57,15 @@ function createPlayer() {
     //  Our two animations, walking left and right.
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
-
 }
 
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    cursors = game.input.keyboard.createCursorKeys();
     createEnvironment();
     createPlayer();
-    cursors = game.input.keyboard.createCursorKeys();
+    createDrops();
+    console.log('tarck collision of ', stars, platforms);
 }
 
 
@@ -74,4 +88,11 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down) {
         player.body.velocity.y = -350;
     }
+
+    game.physics.arcade.collide(stars, platforms);
+    game.physics.arcade.overlap(player, stars, collectStar, null, this);
+}
+
+function collectStar(player, star) {
+    star.kill();
 }
