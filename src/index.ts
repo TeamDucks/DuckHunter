@@ -9,6 +9,8 @@ var player: Phaser.Sprite;
 var platforms: Phaser.Group;
 var cursors: Phaser.CursorKeys;
 var stars: Phaser.Group;
+var score = 0
+var scoreText;
 
 function preload() {
     game.load.image('sky', 'assets/sky.png');
@@ -65,7 +67,10 @@ function create() {
     createEnvironment();
     createPlayer();
     createDrops();
-    console.log('tarck collision of ', stars, platforms);
+    scoreText = game.add.text(16, 16, 'Score: 0', {
+        fontSize: '32px',
+        fill: '#000'
+    });
 }
 
 
@@ -95,4 +100,7 @@ function update() {
 
 function collectStar(player, star) {
     star.kill();
+
+    score += 10;
+    scoreText.text = 'Score: ' + score;
 }
