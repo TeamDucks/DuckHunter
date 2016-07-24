@@ -3,13 +3,13 @@ Duck Hunter Game
 
 The ambitious experimental project of hobbies game dev on their first steps
 
-## Build
+## Install
 
 ```
 npm install
 ```
 
-## Run
+## Build & Run
 
 Watch and compile / pack files automatically
 
