@@ -20,7 +20,7 @@ npm run watch
 To run the local server
 
 ```
-http-server
+npm run server
 ```
 
 Go to `localhost:8080`, enjoy!
