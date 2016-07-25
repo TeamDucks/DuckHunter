@@ -6,7 +6,10 @@ The ambitious experimental project of hobbies game dev on their first steps
 ## Install
 
 ```
+npm install -g typings
+
 npm install
+typings install
 ```
 
 ## Build & Run
