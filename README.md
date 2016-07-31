@@ -26,4 +26,6 @@ To run the local server
 npm run server
 ```
 
-Go to `localhost:8080`, enjoy!
+Go to `localhost:8080`, you should see this extrodinary pretty screen
+
+![Initial Game Screenshot](./readme/initial-game-screenshot.png)
